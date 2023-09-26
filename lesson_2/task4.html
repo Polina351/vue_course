@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+
+</head>
+<body>
+<!--Вы разрабатываете приложение для управления списком контактов. У вас есть форма с полями "Имя", "Фамилия" и "Email", где пользователь может вводить информацию о новом контакте. После добавления контакта он должен отображаться в списке контактов. Требуется связать форму с данными и отображать список контактов на странице.-->
+<div id="app">
+    <form @submit.prevent="addContact">
+        <p>Имя</p>
+        <input type="text" v-model="newContact.name">
+        <p>Фамилия</p>
+        <input type="text" v-model="newContact.lastName">
+        <p>Email</p>
+        <input type="email" v-model="newContact.email">
+        <button>Add contact</button>
+    </form>
+    <h3>Contacts</h3>
+    <div v-for="(contact, idX) in contacts" :key="idX">
+        <p>{{contact.name}}</p>
+        <p>{{contact.lastName}}</p>
+        <p>{{contact.email}}</p>
+    </div>
+
+</div>
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            contacts: [],
+            newContact: {
+                name: '',
+                lastName: '',
+                email: ''
+            }
+        },
+        methods: {
+            addContact() {
+                const {name, lastName, email} = this.newContact;
+                this.contacts.push({
+                    name,
+                    lastName,
+                    email
+                })
+            }
+
+        },
+        computed: {
+
+        }
+    })
+</script>
+</body>
+</html>

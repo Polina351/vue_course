@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+
+</head>
+<body>
+<!--Вы разрабатываете приложение для создания списка покупок. У вас есть массив объектов items, где каждый объект представляет товар с его названием и количеством. Вам необходимо отобразить список товаров, предоставить возможность изменять количество каждого товара и отмечать товары, которые уже куплены.-->
+<div id="app">
+    <p>List users</p>
+        <p v-for="(item, index) in items">
+            <input type="checkbox" :checked="item.status">
+            {{item.product}} {{item.count}}
+            <button @click="add(index)">+1</button>;
+            <button @click="remove(index)">-1</button>;
+        </p>
+</div>
+<script>
+  new Vue({
+    el: '#app',
+    data: {
+        items: [
+            {
+                product: 'apples',
+                count: 2,
+                status: false
+            },
+            {
+                product: 'bananas',
+                count: 3,
+                status: true
+            },
+            {
+                product: 'eggs',
+                count: 1,
+                status: false
+            }
+        ]
+    },
+    methods: {
+        add(index) {
+            this.items[index].count++;
+        },
+        remove(index) {
+            if (this.items[index].count > 0) {
+                this.items[index].count--;
+            }
+        }
+
+    },
+    computed: {
+
+    }
+  })
+</script>
+</body>
+</html>
