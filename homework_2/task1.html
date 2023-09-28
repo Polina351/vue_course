@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+</head>
+<body>
+    <!--Вы разрабатываете приложение для отображения и сортировки списка товаров. У вас есть массив объектов products, где каждый объект представляет товар с его названием и ценой. Вам необходимо отобразить список товаров и предоставить пользователю возможность сортировать товары по цене (по возрастанию и по убыванию).-->
+    <div id="app">
+        <p>Сортировать по цене:</p>
+        <div>
+            <button title="По убыванию" @click="sortDescending">↓</button>
+            <button title="По возрастанию" @click="sortAscending">↑</button>
+        </div>
+        <ul>
+            <li v-for="product in products">{{ `${product.product}: ${product.price}`}}</li>
+        </ul>
+    </div>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                products: [
+                    {
+                        product: 'milk',
+                        price: 300
+                    },
+                    {
+                        product: 'bread',
+                        price: 150
+                    },
+                    {
+                        product: 'apple',
+                        price: 200
+                    }
+                ]
+            },
+            methods: {
+                sortDescending() {
+                    this.products.sort(function (a, b) {
+                        return b.price - a.price;
+                    });
+                },
+                sortAscending() {
+                    this.products.sort(function (a, b) {
+                        return a.price - b.price;
+                    });
+                }
+            }
+        })
+    </script>
+</body>
+</html>
