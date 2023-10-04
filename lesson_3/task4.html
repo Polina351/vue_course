@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <title>Document</title>
+    <style>
+        .box-column {
+            display: flex;
+            flex-direction: column;
+        }
+        .box {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .elem {
+            width: 200px;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <product />
+</div>
+<script>
+    Vue.component('product', {
+        data: function () {
+            return {
+                products: [
+                    {
+                        product_name: 'banana',
+                        description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit',
+                        price: 300
+                    },
+                    {
+                        product_name: 'milk',
+                        description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit',
+                        price: 150
+                    },
+                    {
+                        product_name: 'bread',
+                        description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit',
+                        price: 100
+                    }
+                ]
+            }
+        },
+        methods: {
+            sortDescending() {
+                this.products.sort(function (a, b) {
+                    return b.price - a.price;
+                });
+            },
+            sortAscending() {
+                this.products.sort(function (a, b) {
+                    return a.price - b.price;
+                });
+            }
+        },
+        template: `
+        <div class="box-column">
+            <div class="box">
+              <h3>Сортировать по</h3>
+              <div>
+                <button @click="sortAscending">↑</button>
+                <button @click="sortDescending">↓</button>
+              </div>
+            </div>
+            <div class="box">
+              <div v-for="(product, idX) in products" :key="idX" class="elem">
+                <h3>{{ product.product_name }}</h3>
+                <p>{{ product.description }}</p>
+                <p>{{ product.price }}$</p>
+              </div>
+            </div>
+        </div>
+        `
+    })
+    new Vue({
+        el: '#app',
+        data: {},
+        methods: {},
+        computed: {}
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+
+    <title>Document</title>
+</head>
+<body>
+<!--Создайте компонент списка дел, в котором можно добавлять и удалять элементы. Каждый элемент списка должен
+иметь кнопку удаления, при нажатии на которую элемент списка будет удаляться.-->
+<div id="app">
+    <todo-list />
+</div>
+
+<script>
+  Vue.component('todo-list', {
+    data: function () {
+      return {
+        todos: ['ghj','hjhjhj' ]
+      }
+    },
+    methods: {
+        addTodo(data) {
+            this.todos.push(data)
+        },
+        deleteTodo(idX) {
+            this.todos.splice(idX, 1)
+        }
+    }
+    ,
+    template: `
+      <div>
+        <form @submit.prevent="">
+          <label for="todo"><input type="text" id="todo" placeholder="Todo..." v-model="newTodo"></label>
+          <button @click="addTodo(newTodo)">Add todo</button>
+        </form>
+        <ul v-for="(todo, idX) in todos" :key="idX">
+            <li>{{ todo }} <button @click="deleteTodo(idX)">delete</button></li>
+        </ul>
+      </div>
+    `
+  })
+
+
+  new Vue({
+    el: '#app',
+    data: {},
+    methods: {},
+    computed: {}
+  })
+</script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <title>Document</title>
+</head>
+<body>
+<div id="app">
+    <array-list />
+</div>
+<script>
+    Vue.component('array-list', {
+        data: function () {
+            return {
+                lists: ['polina', 'ivan', 'darina'],
+                ytr: ''
+            }
+        },
+        computed: {
+            filterList() {
+                return this.lists.filter(elem => this.ytr ? elem.includes(this.ytr) : elem);
+            }
+        },
+        methods: {
+
+        },
+        template: `
+          <div>
+              <input type="text" placeholder="filter" v-model="ytr"  >
+              <ul v-for="(elem, idX) in filterList" :key="idX">
+                <li>{{ elem }}</li>
+              </ul>
+          </div>
+        `
+    })
+    new Vue({
+        el: '#app',
+        data: {},
+        methods: {},
+        computed: {
+
+        }
+    })
+</script>
+</body>
+</html>
